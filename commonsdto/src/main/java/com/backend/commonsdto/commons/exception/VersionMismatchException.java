@@ -1,4 +1,7 @@
 package com.backend.commonsdto.commons.exception;
-public class VersionMismatchException extends RuntimeException {
-    public VersionMismatchException(String message) { super(message); }
+
+import com.backend.commonsdto.commons.util.ErrorCode;
+
+public class VersionMismatchException extends BaseException {
+    public VersionMismatchException(String message) { super(message, ErrorCode.VERSION_MISMATCH); }
 }

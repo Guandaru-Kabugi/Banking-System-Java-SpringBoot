@@ -34,7 +34,7 @@ public class Customer {
     private String lastName;
     @Column(name="email",      nullable=false)
     private String email;
-    @Column(name="phone")
+    @Column(name="phone", nullable = false)
     private String phone;
     @Column(name="address",    nullable=false)
     private String address;

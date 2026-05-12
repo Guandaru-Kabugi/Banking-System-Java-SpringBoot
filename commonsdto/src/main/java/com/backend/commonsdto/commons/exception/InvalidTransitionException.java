@@ -1,4 +1,8 @@
 package com.backend.commonsdto.commons.exception;
-public class InvalidTransitionException extends RuntimeException {
-    public InvalidTransitionException(String message) { super(message); }
+
+import com.backend.commonsdto.commons.util.ErrorCode;
+
+public class InvalidTransitionException extends BaseException {
+    public InvalidTransitionException(String message)
+    { super(message, ErrorCode.INVALID_TRANSITION); }
 }

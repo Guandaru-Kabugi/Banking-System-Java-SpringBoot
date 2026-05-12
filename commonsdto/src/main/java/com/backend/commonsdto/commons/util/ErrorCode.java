@@ -14,6 +14,10 @@ public enum ErrorCode {
     INVALID_FILE_TYPE("INVALID_FILE_TYPE", "Invalid file type"),
     DATABASE_ERROR("DATABASE_ERROR", "Database operation failed"),
     CONSENT_MISSING("CONSENT_MISSING", "Missing consent"),
+    UNPROCESSABLE_ENTITY("UNPROCESSABLE_ENTITY", "unprocessable_entity"),
+    INVALID_TRANSITION("INVALID_TRANSITION", "Invalid transition"),
+    VERSION_MISMATCH("VERSION_MISMATCH", "Version mismatch"),
+    UPSTREAM_ERROR("UPSTREAM_ERROR", "Upstream error"),
     CONFLICT_ERROR("CONFLICT_ERROR", "Detail duplication conflicts");
 
     private final String code;

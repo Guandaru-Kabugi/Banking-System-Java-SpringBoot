@@ -1,5 +1,7 @@
 package com.backend.commonsdto.commons.exception;
-public class UpstreamException extends RuntimeException {
-    public UpstreamException(String message) { super(message); }
-    public UpstreamException(String message, Throwable cause) { super(message, cause); }
+
+import com.backend.commonsdto.commons.util.ErrorCode;
+
+public class UpstreamException extends BaseException {
+    public UpstreamException(String message) { super(message, ErrorCode.UPSTREAM_ERROR); }
 }

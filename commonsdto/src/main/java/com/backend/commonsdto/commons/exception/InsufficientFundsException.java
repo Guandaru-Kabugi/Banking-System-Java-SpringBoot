@@ -1,7 +1,9 @@
 package com.backend.commonsdto.commons.exception;
 
-public class InsufficientFundsException extends RuntimeException {
+import com.backend.commonsdto.commons.util.ErrorCode;
+
+public class InsufficientFundsException extends BaseException {
     public InsufficientFundsException() {
-        super("Insufficient Funds");
+        super("Insufficient Funds", ErrorCode.UNPROCESSABLE_ENTITY);
     }
 }

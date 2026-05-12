@@ -1,5 +1,6 @@
 package com.backend.customerservice.mapper;
 
+import com.backend.customerservice.dto.CustomerCreatedResponse;
 import com.backend.customerservice.dto.CustomerRequest;
 import com.backend.customerservice.dto.CustomerResponse;
 import com.backend.customerservice.model.Customer;
@@ -15,7 +16,7 @@ public interface CustomerMapper {
 
     CustomerResponse toResponse(Customer customer);
 
-//    CustomerCreatedResponse toCreateResponse(Customer customer);
+    CustomerCreatedResponse toCreateResponse(Customer customer);
 
 //    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 //    void updateCustomerFromRequest(UpdateCustomerRequest request, @MappingTarget Customer customer);
