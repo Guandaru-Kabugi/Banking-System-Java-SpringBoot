@@ -107,7 +107,7 @@ public class GlobalExceptionHandler {
         log.error("Customer Not Found error: {}", ex.getMessage(), ex);
         ApiResponse<Object> response = ApiResponse.error(
                 "Customer Not Found Errors",
-                "CUSTOMER_NOT_FOUND. The customer ID does not exist {}",
+                ex.getMessage(),
                 ex.getErrorCode().getCode(),
                 HttpStatus.NOT_FOUND.value()
         );

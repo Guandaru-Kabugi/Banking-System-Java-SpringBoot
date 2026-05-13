@@ -3,6 +3,7 @@ package com.backend.customerservice.controller;
 import com.backend.commonsdto.commons.dto.ApiResponse;
 import com.backend.customerservice.dto.CustomerCreatedResponse;
 import com.backend.customerservice.dto.CustomerRequest;
+import com.backend.customerservice.dto.CustomerResponse;
 import com.backend.customerservice.service.serviceinterface.ICustomerService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -13,10 +14,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 
@@ -50,6 +48,29 @@ public class CustomerController {
         CustomerCreatedResponse response =  customerService.createCustomer(customerRequest);
         URI location = URI.create("/api/v1/customers/create/" + response.getExternalId());
         return ResponseEntity.created(location).body(ApiResponse.success(response));
+    }
+
+
+    @Operation(
+            summary = "Get a Customer By External Id",
+            description = "The endpoint is used to get a customer for the bank."
+    )
+    @ApiResponses({
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                    responseCode = "200",
+                    description = "Retrieved a customer successfully"
+            ),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                    responseCode = "400",
+                    description = "Bad Request",
+                    content = @Content(schema = @Schema(implementation = Void.class))
+            )
+    })
+    @GetMapping("/getByExternalId/{externalId}")
+    public ResponseEntity<ApiResponse<?>> getCustomerByExternalId(
+            @PathVariable String externalId) {
+        CustomerResponse response =  customerService.getCustomerByExternalId(externalId);
+        return ResponseEntity.ok().eTag("\"" + response.getVersion() + "\"").body(ApiResponse.success(response));
     }
 
 }

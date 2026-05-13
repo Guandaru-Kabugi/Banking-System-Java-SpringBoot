@@ -1,8 +1,10 @@
 package com.backend.customerservice.service.serviceimpl;
 
 import com.backend.commonsdto.commons.exception.ConflictException;
+import com.backend.commonsdto.commons.exception.CustomerNotFoundException;
 import com.backend.customerservice.dto.CustomerCreatedResponse;
 import com.backend.customerservice.dto.CustomerRequest;
+import com.backend.customerservice.dto.CustomerResponse;
 import com.backend.customerservice.mapper.CustomerMapper;
 import com.backend.customerservice.model.Customer;
 import com.backend.customerservice.model.KycStatus;
@@ -61,6 +63,20 @@ public class CustomerServiceImpl implements ICustomerService {
 
         //return the response
         return customerMapper.toCreateResponse(customerSaved);
+    }
+
+    @Override
+    public CustomerResponse getCustomerByExternalId(String externalId) {
+        Customer customer = customerRepository.findByExternalId(externalId).orElseThrow(
+                () -> new CustomerNotFoundException(String.format("Customer with this id: %s not found", externalId)));
+        return customerMapper.toResponse(customer);
+    }
+
+    @Override
+    public CustomerResponse updateCustomer(CustomerRequest customerRequest, String externalId, Integer versionNumber) {
+        Customer customer = customerRepository.findByExternalId(externalId).orElseThrow(
+                () -> new CustomerNotFoundException(String.format("Customer with this id: %s not found", externalId)));
+        return null;
     }
 
     private boolean exists(String externalId) {
